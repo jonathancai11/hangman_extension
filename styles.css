@@ -1,0 +1,9 @@
+body {
+	min-width: 400px;
+	min-height: 560px;
+	text-align: center;
+}
+
+#title {
+	text-align: center;
+}
