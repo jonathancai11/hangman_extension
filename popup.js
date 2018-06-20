@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
                           });
 
 var tries = 10; // Number of tries
+var correct = 0; // Number of correct letts
 var word = ""
 var ltrsTried = new Set()
 
@@ -13,11 +14,18 @@ function generate_game() {
     
     ltrsTried = new Set()
     tries = 10;
+    correct = 0;
     
     var category = document.getElementById("category").value; // Get selected category
     word = select_word(category); // Select word according to category
     
     var display = ("_\xa0\xa0\xa0").repeat(word.length); // Display _ for each letter
+    for (i = 0; i < word.length; i++) {
+        if (word.charAt(i) == " ") {
+            display = replaceAt(display, i*4, " ");
+            correct++;
+        }
+    }
     display = display.substring(0, display.length-3); // Truncate end of string to remove extra space
     
     document.getElementById("word0").innerHTML = word; // Display word
@@ -41,13 +49,14 @@ function guess_letter() {
         
         if (ltrsTried.has(ltr.toLowerCase())) { // Check if letter has been previously tried
             document.getElementById("notif2").innerHTML = "You've already tried this letter!";
-            return
+            return;
         } else {
             ltrsTried.add(ltr.toLowerCase());
         }
         
         if (tries <= 0) { // If tries get to 0, you lose the game
             document.getElementById("notif1").innerHTML = "You lost!";
+            return;
         }
         // Check if letter is in the word
         flag = false
@@ -57,17 +66,24 @@ function guess_letter() {
                 display = document.getElementById("word1").innerHTML;
                 display = replaceAt(display, i*19, ltr.toLowerCase());
                 document.getElementById("word1").innerHTML = display;
+                correct++;
             }
             if (ltr.toUpperCase() == word.charAt(i)) {
                 flag = true;
                 display = document.getElementById("word1").innerHTML;
                 display = replaceAt(display, i*19, ltr.toUpperCase());
                 document.getElementById("word1").innerHTML = display;
+                correct++;
             }
         }
         if (flag == false) {
             tries --; // Decrease tries
             document.getElementById("notif1").innerHTML = tries; // Display tries
+        }
+        if (correct == word.length) {
+            var win = "You win!";
+            document.getElementById("notif1").innerHTML = win;
+            return;
         }
     }
 };
@@ -92,7 +108,8 @@ function select_word(category) {
         var word = "Brands";
     }
     if (category == "rappers") {
-        var word = "Rappers";
+        //var word = "Rappers";
+        var word = "Lil Pump";
     }
     return word
 }
