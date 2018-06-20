@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 var tries = 10; // Number of tries
-var word = ""
+var word = "";
 
 // Generate a game:
 function generate_game() {
@@ -33,9 +33,9 @@ function guess_letter() {
     if (((charCode<123) && (charCode>96)) || ((charCode<91) && (charCode>64))) {
 		var ltr = String.fromCharCode(charCode);
 
-		// document.getElementById("notif0").innerHTML = ltr;
+        document.getElementById("notif0").innerHTML = ltr;
 
-		tries --; // Decrease tries
+		tries--; // Decrease tries
 		document.getElementById("notif1").innerHTML = tries; // Display tries
 
 		if (tries <= 0) { // If tries get to 0, you lose the game
@@ -43,27 +43,39 @@ function guess_letter() {
 		}
 
 		// Check if letter is in the word
-		flag = false
+        var flag = false;
+        //document.getElementById("notif0").innerHTML = "test";
 		for (i=0; i<word.length; i++) {
-			if (ltr.toLowerCase() == word.charAt(i)){
+			if (ltr.toLowerCase() == word.charAt(i)) {
 				flag = true;
-				display = document.getElementById("word1").innerHTML;
-				display = display.substring(0, 10);
-				// document.getElementById("notif0").innerHTML = i;
-				// display = replaceAt(display, i*4, ltr.toLowerCase());
-				document.getElementById("notif0").innerHTML = display
-			}
-			if (ltr.toUpperCase() == word.charAt(i)) {
-				flag = true;
-				display = document.getElementById("word1").innerHTML;
-				// document.getElementById("notif0").innerHTML = i;
-				// display = replaceAt(ltr.toUpperCase(), i, display);
-				// document.getElementById("word1").innerHTML = display
+                display = display.substring(0, i*4) + ltr.toLowerCase() + display.substring((i*4) + 1);
+                document.getElementById("word1").innerHTML = display;
+                //document.getElementById("notif0").innerHTML = "test2";
+				//display = document.getElementById("word1").innerHTML;
+				// display = display.substring(0, 10);
+				//document.getElementById("notif0").innerHTML = display;
+                /*var temp = display;
+				display = replaceAt(temp, i*4, ltr.toLowerCase());
+                document.getElementById("word1").innerHTML = replaceAt(temp, i*4, ltr.toLowerCase());
+                //document.getElementById("word1").innerHTML = display;*/
+			} else if (ltr.toUpperCase() == word.charAt(i)) {
+                flag = true;
+                display = display.substring(0, i*4) + ltr.toUpperCase() + display.substring((i*4) + 1);
+                document.getElementById("word1").innerHTML = display;
+                //document.getElementById("notif0").innerHTML = "test3";
+                //display = document.getElementById("word1").innerHTML;
+                // display = display.substring(0, 10);
+                //document.getElementById("notif0").innerHTML = display;
+                /*var temp = display;
+                display = replaceAt(temp, i*4, ltr.toUpperCase());
+                document.getElementById("word1").innerHTML = replaceAt(temp, i*4, ltr.toUpperCase());*/
+                //document.getElementById("word1").innerHTML = display;
 			}
 		}
-		// if (flag == true) {
-		// 	document.getElementById("notif0").innerHTML = "Got one: "+ ltr;
-		// }
+        document.getElementById("notif0").innerHTML = "TEST";
+         if (flag == true) {
+             document.getElementById("notif0").innerHTML = "work pls";/*"Got one: " + ltr;*/
+         }
 	}
 };
 
