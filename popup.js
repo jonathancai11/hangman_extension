@@ -6,13 +6,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
 var tries = 10; // Number of tries
 var correct = 0; // Number of correct letts
-var word = ""
-var ltrsTried = new Set()
+var word = "";
+var ltrsTried = new Set();
+
+//categories
+var actorslist = ["Matt Damon", "Emma Stone", "Brad Pitt", "Mila Kunis", "John Krasinksi"];
+var movieslist = ["Lion King", "Titanic", "The Godfather", "Star Wars", "La La Land"];
+var animalslist = ["Dog", "Cat", "Moose", "Lion", "Porcupine"];
+var brandslist = ["Supreme", "Jordan", "Nike", "J Crew", "Uniqlo"];
+var rapperslist = ["Drake", "Kendrick Lamar", "Kanye West", "J Cole", "Lil Uzi Vert"];
 
 // Generate a game:
 function generate_game() {
     
-    ltrsTried = new Set()
+    ltrsTried = new Set();
     tries = 10;
     correct = 0;
     
@@ -33,7 +40,7 @@ function generate_game() {
     
     document.onkeypress = guess_letter;    // Begin reading keyboard input for letters
     document.getElementById("notif1").innerHTML = tries; // Display tries
-    document.getElementById("notif2").innerHTML = "" // Reset notification
+    document.getElementById("notif2").innerHTML = ""; // Reset notification
     
 };
 
@@ -96,21 +103,25 @@ function replaceAt(s, n, t) {
 // Select the word based on the category:
 function select_word(category) {
     if (category == "actors") {
-        var word = "Actors";
+        //var word = "Actors";
+        var word = actorslist[Math.floor(Math.random()*actorslist.length)];
     }
     if (category == "movies") {
-        var word = "Movies";
+        //var word = "Movies";
+        var word = movieslist[Math.floor(Math.random()*movieslist.length)];
     }
     if (category == "animals") {
-        var word = "Animals";
+        //var word = "Animals";
+        var word = animalslist[Math.floor(Math.random()*animalslist.length)];
     }
     if (category == "brands") {
-        var word = "Brands";
+        //var word = "Brands";
+        var word = brandslist[Math.floor(Math.random()*brandslist.length)];
     }
     if (category == "rappers") {
         //var word = "Rappers";
-        var word = "Lil Pump";
+        var word = rapperslist[Math.floor(Math.random()*rapperslist.length)];
     }
-    return word
+    return word;
 }
 
