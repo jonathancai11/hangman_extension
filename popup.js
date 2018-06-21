@@ -10,11 +10,16 @@ var word = "";
 var ltrsTried = new Set();
 
 //categories
-var actorslist = ["Matt Damon", "Emma Stone", "Brad Pitt", "Mila Kunis", "John Krasinksi"];
-var movieslist = ["Lion King", "Titanic", "The Godfather", "Star Wars", "La La Land"];
-var animalslist = ["Dog", "Cat", "Moose", "Lion", "Porcupine"];
-var brandslist = ["Supreme", "Jordan", "Nike", "J Crew", "Uniqlo"];
-var rapperslist = ["Drake", "Kendrick Lamar", "Kanye West", "J Cole", "Lil Uzi Vert"];
+var actorslist = ["Matt Damon", "Emma Stone", "Brad Pitt", "Mila Kunis", "John Krasinksi",
+                  "Jennifer Lawrence", "Jonah Hill", "Scarlett Johansson", "Tom Cruise", "Angelina Jolie"];
+var movieslist = ["Lion King", "Titanic", "The Godfather", "Star Wars", "La La Land",
+                  "Forrest Gump", "Fight Club", "The Curious Case of Benjamin Button", "Inception", "Back to the Future"];
+var animalslist = ["Dog", "Cat", "Moose", "Lion", "Porcupine",
+                   "Squid", "Tiger", "Cheetah", "Parrot", "Crocodile"];
+var brandslist = ["Supreme", "Jordan", "Nike", "J Crew", "Uniqlo",
+                  "Adidas", "Puma", "Reebok", "Old Navy", "Converse"];
+var rapperslist = ["Drake", "Kendrick Lamar", "Kanye West", "J Cole", "Lil Uzi Vert",
+                   "Jay Z", "Dr Dre", "Eminem", "Childish Gambino", "Future"];
 
 // Generate a game:
 function generate_game() {
@@ -103,23 +108,18 @@ function replaceAt(s, n, t) {
 // Select the word based on the category:
 function select_word(category) {
     if (category == "actors") {
-        //var word = "Actors";
         var word = actorslist[Math.floor(Math.random()*actorslist.length)];
     }
     if (category == "movies") {
-        //var word = "Movies";
         var word = movieslist[Math.floor(Math.random()*movieslist.length)];
     }
     if (category == "animals") {
-        //var word = "Animals";
         var word = animalslist[Math.floor(Math.random()*animalslist.length)];
     }
     if (category == "brands") {
-        //var word = "Brands";
         var word = brandslist[Math.floor(Math.random()*brandslist.length)];
     }
     if (category == "rappers") {
-        //var word = "Rappers";
         var word = rapperslist[Math.floor(Math.random()*rapperslist.length)];
     }
     return word;
