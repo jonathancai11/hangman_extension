@@ -8,6 +8,7 @@ var tries = 10; // Number of tries
 var correct = 0; // Number of correct letts
 var word = "";
 var ltrsTried = new Set();
+var letters = "";
 
 //categories
 var actorslist = ["Matt Damon", "Emma Stone", "Brad Pitt", "Mila Kunis", "John Krasinksi",
@@ -27,6 +28,7 @@ function generate_game() {
     ltrsTried = new Set();
     tries = 10;
     correct = 0;
+    letters = "";
     
     var category = document.getElementById("category").value; // Get selected category
     word = select_word(category); // Select word according to category
@@ -89,9 +91,11 @@ function guess_letter() {
             }
         }
         if (flag == false) {
-            tries --; // Decrease tries
-            document.getElementById("notif1").innerHTML = tries; // Display tries
+            tries--; // Decrease tries
         }
+        letters = letters + ltr.toLowerCase() + " ";
+        var notiftext = "Tries: " + tries + ", Letters: " + letters;
+        document.getElementById("notif1").innerHTML = notiftext;
         if (correct == word.length) {
             var win = "You win!";
             document.getElementById("notif1").innerHTML = win;
