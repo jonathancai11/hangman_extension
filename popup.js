@@ -17,7 +17,7 @@ function generate_game() {
 	var category = document.getElementById("category").value; // Get selected category
 	word = select_word(category); // Select word according to category
 
-	var display = ("_\xa0\xa0\xa0").repeat(word.length); // Display _ for each letter
+	var display = ("_\xa0\xa0\xa0").repeat(word.length); // Dsplay _ for each letter
 	display = display.substring(0, display.length-3); // Truncate end of string to remove extra space
 
 	document.getElementById("word0").innerHTML = word; // Display word
@@ -48,6 +48,7 @@ function guess_letter() {
 
 		if (tries <= 0) { // If tries get to 0, you lose the game
 			document.getElementById("notif1").innerHTML = "You lost!";
+			return
 		}
 		// Check if letter is in the word
 		flag = false
