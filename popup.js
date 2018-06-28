@@ -140,7 +140,7 @@ function select_word(category) {
         return getrandom(brandslist);
     }
     if (category == "rappers") {
-        return getrandom(getrapperslist);
+        return getrandom(rapperslist);
     }
 }
 
