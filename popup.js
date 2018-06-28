@@ -12,8 +12,7 @@ var letters = "";
 var imgnum = 0
 
 //categories
-var actorslist = ["Matt Damon", "Emma Stone", "Brad Pitt", "Mila Kunis", "John Krasinksi",
-                  "Jennifer Lawrence", "Jonah Hill", "Scarlett Johansson", "Tom Cruise", "Angelina Jolie"];
+var actorslist = ["Actors"];
 var movieslist = ["Lion King", "Titanic", "The Godfather", "Star Wars", "La La Land",
                   "Forrest Gump", "Fight Club", "The Curious Case of Benjamin Button", "Inception", "Back to the Future"];
 var animalslist = ["Dog", "Cat", "Moose", "Lion", "Porcupine",
@@ -34,16 +33,16 @@ function generate_game() {
     var category = document.getElementById("category").value; // Get selected category
     word = select_word(category); // Select word according to category
     
-    var display = ("_\xa0\xa0\xa0").repeat(word.length); // Display _ for each letter
+    var display = ("_\xa0\xa0").repeat(word.length); // Display _ for each letter
     for (i = 0; i < word.length; i++) {
         if (word.charAt(i) == " ") {
-            display = replaceAt(display, i*4, " ");
+            display = replaceAt(display, i*3, " ");
             correct++;
         }
     }
-    display = display.substring(0, display.length-3); // Truncate end of string to remove extra space
+    display = display.substring(0, display.length-2); // Truncate end of string to remove extra space
     
-    document.getElementById("word0").innerHTML = word; // Display word
+    // document.getElementById("word0").innerHTML = word; // Display word
     document.getElementById("word1").innerHTML = display; // Second display
     
     document.onkeypress = guess_letter;    // Begin reading keyboard input for letters
@@ -81,7 +80,7 @@ function guess_letter() {
             if (ltr.toLowerCase() == word.charAt(i)){
                 flag = true;
                 display = document.getElementById("word1").innerHTML;
-                display = replaceAt(display, i*19, ltr.toLowerCase());
+                display = replaceAt(display, i*13, ltr.toLowerCase());
                 document.getElementById("word1").innerHTML = display;
                 correct++;
             }
@@ -117,25 +116,23 @@ function replaceAt(s, n, t) {
 // Select the word based on the category:
 function select_word(category) {
     if (category == "actors") {
-        var word = actorslist[Math.floor(Math.random()*actorslist.length)];
+        return getrandom(actorslist);
     }
     if (category == "movies") {
-        var word = movieslist[Math.floor(Math.random()*movieslist.length)];
+        return getrandom(movieslist);
     }
     if (category == "animals") {
-        var word = animalslist[Math.floor(Math.random()*animalslist.length)];
+        return getrandom(animalslist);
     }
     if (category == "brands") {
-        var word = brandslist[Math.floor(Math.random()*brandslist.length)];
+        return getrandom(brandslist);
     }
     if (category == "rappers") {
-        var word = rapperslist[Math.floor(Math.random()*rapperslist.length)];
+        return getrandom(getrapperslist);
     }
-    return word;
 }
 
-// function replace_last(stri, chara) {
-//     result = stri.substring(0, stri.length -1)
-//     result = result + chara
-//     return result
-// }
+// Given an array, return a random element in the array
+function getrandom(array) {
+    return array[Math.floor(Math.random()*array.length)]
+}
