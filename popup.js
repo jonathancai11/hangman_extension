@@ -55,13 +55,16 @@ function generate_game() {
     display = display.substring(0, display.length-2); // Truncate end of string to remove extra space
     
     // document.getElementById("word0").innerHTML = word; // Display word
-    document.getElementById("word1").innerHTML = display; // Second display
+    document.getElementById("word0").innerHTML = display; // Second display
     
     document.onkeypress = guess_letter;    // Begin reading keyboard input for letters
     document.getElementById("notif1").innerHTML = tries; // Display tries
     document.getElementById("notif2").innerHTML = ""; // Reset notification
     imgnum = 0
     document.getElementById("pic").src = "img/post" +imgnum.toString()+ ".gif"
+
+    document.getElementById("notif3").innerHTML = "";
+    document.getElementById("word1").innerHTML = "";
     
 };
 
@@ -82,8 +85,10 @@ function guess_letter() {
             ltrsTried.add(ltr.toLowerCase());
         }
         
-        if (tries <= 0) { // If tries get to 0, you lose the game
+        if (tries <= 1) { // If tries get to 0, you lose the game
             document.getElementById("notif1").innerHTML = "You lost!";
+            document.getElementById("notif3").innerHTML = "The word was:";
+            document.getElementById("word1").innerHTML = word;
             return;
         }
         // Check if letter is in the word
@@ -91,16 +96,16 @@ function guess_letter() {
         for (i = 0; i < word.length; i++) {
             if (ltr.toLowerCase() == word.charAt(i)){
                 flag = true;
-                display = document.getElementById("word1").innerHTML;
+                display = document.getElementById("word0").innerHTML;
                 display = replaceAt(display, i*13, ltr.toLowerCase());
-                document.getElementById("word1").innerHTML = display;
+                document.getElementById("word0").innerHTML = display;
                 correct++;
             }
             if (ltr.toUpperCase() == word.charAt(i)) {
                 flag = true;
-                display = document.getElementById("word1").innerHTML;
+                display = document.getElementById("word0").innerHTML;
                 display = replaceAt(display, i*13, ltr.toUpperCase());
-                document.getElementById("word1").innerHTML = display;
+                document.getElementById("word0").innerHTML = display;
                 correct++;
             }
         }
@@ -140,7 +145,7 @@ function select_word(category) {
         return getrandom(brandslist);
     }
     if (category == "rappers") {
-        return getrandom(getrapperslist);
+        return getrandom(rapperslist);
     }
 }
 
