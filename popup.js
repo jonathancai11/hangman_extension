@@ -9,18 +9,30 @@ var correct = 0; // Number of correct letts
 var word = "";
 var ltrsTried = new Set();
 var letters = "";
-var imgnum = 0
+var imgnum = 0;
 
 //categories
-var actorslist = ["Actors"];
+
+var actorslist = ["Matt Damon", "Emma Stone", "Brad Pitt", "Mila Kunis", "John Krasinksi",
+                  "Jennifer Lawrence", "Jonah Hill", "Scarlett Johansson", "Tom Cruise", "Angelina Jolie",
+                  "Leonardo DiCaprio", "Jennifer Aniston", "Denzel Washington", "Julia Roberts", "Tom Cruise",
+                  "Marilyn Monroe", "Will Smith", "Natalie Portman", "Harrison Ford", "Anne Hathaway"];
 var movieslist = ["Lion King", "Titanic", "The Godfather", "Star Wars", "La La Land",
-                  "Forrest Gump", "Fight Club", "The Curious Case of Benjamin Button", "Inception", "Back to the Future"];
+                  "Forrest Gump", "Fight Club", "The Curious Case of Benjamin Button", "Inception", "Back to the Future",
+                  "Pulp Fiction", "Avengers", "Black Panther", "The Matrix", "Saving Private Ryan",
+                  "Jaws", "Terminator", "Toy Story", "Superman", "Batman"];
 var animalslist = ["Dog", "Cat", "Moose", "Lion", "Porcupine",
-                   "Squid", "Tiger", "Cheetah", "Parrot", "Crocodile"];
+                   "Squid", "Tiger", "Cheetah", "Parrot", "Crocodile",
+                   "Goose", "Camel", "Owl", "Bear", "Whale",
+                   "Crab", "Eagle", "Gecko", "Fox", "Monkey"];
 var brandslist = ["Supreme", "Jordan", "Nike", "J Crew", "Uniqlo",
-                  "Adidas", "Puma", "Reebok", "Old Navy", "Converse"];
+                  "Adidas", "Puma", "Reebok", "Old Navy", "Converse",
+                  "New Balance", "Gap", "Ralph Lauren", "Obey", "Bape",
+                  "Gucci", "Louis Vuitton", "Rolex", "Levis", "Stussy"];
 var rapperslist = ["Drake", "Kendrick Lamar", "Kanye West", "J Cole", "Lil Uzi Vert",
-                   "Jay Z", "Dr Dre", "Eminem", "Childish Gambino", "Future"];
+                   "Jay Z", "Dr Dre", "Eminem", "Childish Gambino", "Future",
+                   "Lil Pump", "Snoop Dogg", "Lil Wayne", "Meek Mill", "Big Sean",
+                   "Rick Ross", "Wiz Khalifa", "Young Thug", "Tyler The Creator", "Chance The Rapper"];
 
 // Generate a game:
 function generate_game() {
