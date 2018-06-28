@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 var tries = 7; // Number of tries
 var correct = 0; // Number of correct letts
-var word = "";
 var ltrsTried = new Set();
 var letters = "";
+var word = "";
 var imgnum = 0;
 
 //categories
@@ -43,7 +43,9 @@ function generate_game() {
     letters = "";
     
     var category = document.getElementById("category").value; // Get selected category
-    word = select_word(category); // Select word according to category
+    var difficulty = document.getElementById("difficulty").value; // Get selected difficulty
+    word = select_word(category, difficulty); // Select word according to category
+    
     
     var display = ("_\xa0\xa0").repeat(word.length); // Display _ for each letter
     for (i = 0; i < word.length; i++) {
@@ -58,7 +60,7 @@ function generate_game() {
     document.getElementById("word0").innerHTML = display; // Second display
     
     document.onkeypress = guess_letter;    // Begin reading keyboard input for letters
-    document.getElementById("notif1").innerHTML = tries; // Display tries
+    document.getElementById("notif1").innerHTML = "Tries remaining: " + tries + "; Letters tried: none";
     document.getElementById("notif2").innerHTML = ""; // Reset notification
     imgnum = 0
     document.getElementById("pic").src = "img/post" +imgnum.toString()+ ".gif"
@@ -78,19 +80,6 @@ function guess_letter() {
     if (((charCode<123) && (charCode>96)) || ((charCode<91) && (charCode>64))) {
         var ltr = String.fromCharCode(charCode);
         
-        if (ltrsTried.has(ltr.toLowerCase()) && tries != 0) { // Check if letter has been previously tried
-            document.getElementById("notif2").innerHTML = "You've already tried this letter!";
-            return;
-        } else {
-            ltrsTried.add(ltr.toLowerCase());
-        }
-        
-        if (tries <= 1) { // If tries get to 0, you lose the game
-            document.getElementById("notif1").innerHTML = "You lost!";
-            document.getElementById("notif3").innerHTML = "The word was:";
-            document.getElementById("word1").innerHTML = word;
-            return;
-        }
         // Check if letter is in the word
         flag = false
         for (i = 0; i < word.length; i++) {
@@ -109,13 +98,26 @@ function guess_letter() {
                 correct++;
             }
         }
+        if (ltrsTried.has(ltr.toLowerCase()) && tries != 0) { // Check if letter has been previously tried
+            document.getElementById("notif2").innerHTML = "You've already tried this letter!";
+            flag = true;
+            return;
+        } else {
+            ltrsTried.add(ltr.toLowerCase());
+        }
         if (flag == false) {
             tries--; // Decrease tries
             imgnum++
             document.getElementById("pic").src = "img/post" +imgnum.toString()+ ".gif"
         }
+        if (tries <= 0) { // If tries get to 0, you lose the game
+            document.getElementById("notif1").innerHTML = "You lost!";
+            document.getElementById("notif3").innerHTML = "The word was:";
+            document.getElementById("word1").innerHTML = word;
+            return;
+        }
         letters = letters + ltr.toLowerCase() + " ";
-        var notiftext = "Tries: " + tries + ", Letters: " + letters;
+        var notiftext = "Tries remaining: " + tries + "; Letters tried: " + letters;
         document.getElementById("notif1").innerHTML = notiftext;
         if (correct == word.length) {
             var win = "You win!";
@@ -131,25 +133,70 @@ function replaceAt(s, n, t) {
 }
 
 // Select the word based on the category:
-function select_word(category) {
+function select_word(category, difficulty) {
+    var tempword = "";
     if (category == "actors") {
-        return getrandom(actorslist);
+        tempword = get_random(actorslist);
+        while (!(matches_difficulty(tempword, difficulty))) {
+            tempword = get_random(actorslist);
+        }
     }
     if (category == "movies") {
-        return getrandom(movieslist);
+        tempword = get_random(movieslist);
+        while (!(matches_difficulty(tempword, difficulty))) {
+            tempword = get_random(movieslist);
+        }
     }
     if (category == "animals") {
-        return getrandom(animalslist);
+        tempword = get_random(animalslist);
+        while (!(matches_difficulty(tempword, difficulty))) {
+            tempword = get_random(animalslist);
+        }
     }
     if (category == "brands") {
-        return getrandom(brandslist);
+        tempword = get_random(brandslist);
+        while (!(matches_difficulty(tempword, difficulty))) {
+            tempword = get_random(brandslist);
+        }
     }
     if (category == "rappers") {
-        return getrandom(rapperslist);
+        tempword = get_random(rapperslist);
+        while (!(matches_difficulty(tempword, difficulty))) {
+            tempword = get_random(rapperslist);
+        }
     }
+    return tempword;
+}
+
+function matches_difficulty(tempword, difficulty) {
+    if (difficulty == "random") {
+        return true;
+    } else {
+        var count = 0;
+        var counted;
+        for (i = 0; i < tempword.length; i++) {
+            counted = false;
+            for (j = 0; j < i; j++) {
+                if (tempword.charAt(i) == tempword.charAt(j)) {
+                    counted = true;
+                }
+            }
+            if ((counted == false) && (tempword.charAt(i) != " ")) {
+                count++;
+            }
+        }
+        if ((count <= 5) && (difficulty == "easy")) {
+            return true;
+        } else if ((count > 5) && (count <= 10) && (difficulty == "medium")) {
+            return true;
+        } else if ((count > 10) && (difficulty == "hard")) {
+            return true;
+        }
+    }
+    return false;
 }
 
 // Given an array, return a random element in the array
-function getrandom(array) {
+function get_random(array) {
     return array[Math.floor(Math.random()*array.length)]
 }
