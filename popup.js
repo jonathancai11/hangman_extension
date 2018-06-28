@@ -63,7 +63,7 @@ function guess_letter() {
     if (((charCode<123) && (charCode>96)) || ((charCode<91) && (charCode>64))) {
         var ltr = String.fromCharCode(charCode);
         
-        if (ltrsTried.has(ltr.toLowerCase())) { // Check if letter has been previously tried
+        if (ltrsTried.has(ltr.toLowerCase()) && tries != 0) { // Check if letter has been previously tried
             document.getElementById("notif2").innerHTML = "You've already tried this letter!";
             return;
         } else {
@@ -87,7 +87,7 @@ function guess_letter() {
             if (ltr.toUpperCase() == word.charAt(i)) {
                 flag = true;
                 display = document.getElementById("word1").innerHTML;
-                display = replaceAt(display, i*19, ltr.toUpperCase());
+                display = replaceAt(display, i*13, ltr.toUpperCase());
                 document.getElementById("word1").innerHTML = display;
                 correct++;
             }
