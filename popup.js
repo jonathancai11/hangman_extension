@@ -15,24 +15,34 @@ var imgnum = 0;
 
 var actorslist = ["Matt Damon", "Emma Stone", "Brad Pitt", "Mila Kunis", "John Krasinksi",
                   "Jennifer Lawrence", "Jonah Hill", "Scarlett Johansson", "Tom Cruise", "Angelina Jolie",
-                  "Leonardo DiCaprio", "Jennifer Aniston", "Denzel Washington", "Julia Roberts", "Tom Cruise",
-                  "Marilyn Monroe", "Will Smith", "Natalie Portman", "Harrison Ford", "Anne Hathaway"];
+                  "Leonardo DiCaprio", "Jennifer Aniston", "Denzel Washington", "Julia Roberts", "Tom Hanks",
+                  "Marilyn Monroe", "Will Smith", "Natalie Portman", "Harrison Ford", "Anne Hathaway",
+                  "Jack Nicholson", "Meryl Streep", "Johnny Depp", "Amy Adams", "Morgan Freeman",
+                  "Emma Watson", "Liam Neeson", "Sandra Bullock", "Robert De Niro", "Halle Berry"];
 var movieslist = ["Lion King", "Titanic", "The Godfather", "Star Wars", "La La Land",
                   "Forrest Gump", "Fight Club", "The Curious Case of Benjamin Button", "Inception", "Back to the Future",
                   "Pulp Fiction", "Avengers", "Black Panther", "The Matrix", "Saving Private Ryan",
-                  "Jaws", "Terminator", "Toy Story", "Superman", "Batman"];
+                  "Jaws", "Terminator", "Toy Story", "Superman", "Batman",
+                  "Shrek", "Monsters Inc", "Ice Age", "Finding Nemo", "Alien",
+                  "Captain America", "The Incredibles", "Deadpool", "Dr Strangelove", "The Wizard of Oz"];
 var animalslist = ["Dog", "Cat", "Moose", "Lion", "Porcupine",
                    "Squid", "Tiger", "Cheetah", "Parrot", "Crocodile",
                    "Goose", "Camel", "Owl", "Bear", "Whale",
-                   "Crab", "Eagle", "Gecko", "Fox", "Monkey"];
+                   "Crab", "Eagle", "Gecko", "Fox", "Monkey",
+                   "Frog", "Jellyfish", "Sponge", "Armadillo", "Sloth",
+                   "Anteater", "Blue Footed Booby", "Human", "Antelope", "Panda"];
 var brandslist = ["Supreme", "Jordan", "Nike", "J Crew", "Uniqlo",
                   "Adidas", "Puma", "Reebok", "Old Navy", "Converse",
                   "New Balance", "Gap", "Ralph Lauren", "Obey", "Bape",
-                  "Gucci", "Louis Vuitton", "Rolex", "Levis", "Stussy"];
+                  "Gucci", "Louis Vuitton", "Rolex", "Levis", "Stussy",
+                  "Heelys", "Crocs", "Sketchers", "Tommy Hilfiger", "Timberland",
+                  "PacSun", "Tillys", "Abercrombie and Fitch", "Chanel", "Patagonia"];
 var rapperslist = ["Drake", "Kendrick Lamar", "Kanye West", "J Cole", "Lil Uzi Vert",
                    "Jay Z", "Dr Dre", "Eminem", "Childish Gambino", "Future",
                    "Lil Pump", "Snoop Dogg", "Lil Wayne", "Meek Mill", "Big Sean",
-                   "Rick Ross", "Wiz Khalifa", "Young Thug", "Tyler The Creator", "Chance The Rapper"];
+                   "Rick Ross", "Wiz Khalifa", "Young Thug", "Tyler The Creator", "Chance The Rapper",
+                   "The Notorious BIG", "Eazy E", "Tupac", "Ice Cube", "ASAP Rocky",
+                   "Nicki Minaj", "Cardi B", "XXXTentacion", "ScHoolboy Q", "Mac Miller"];
 
 // Generate a game:
 function generate_game() {
